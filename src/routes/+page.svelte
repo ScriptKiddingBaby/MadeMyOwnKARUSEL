@@ -1,39 +1,36 @@
-<script>
-	// @ts-ignore
-	import Carousel from 'svelte-carousel';
-	import { browser } from '$app/environment';
+<script lang="ts">
 
-	import homeBan1 from "$lib/Optimize/homebanner_1.webp";
-	import homeBan2 from "$lib/Optimize/homebanner_2.webp";
-	import homeBan3 from "$lib/Optimize/homebanner_3.webp";
-  
-	/**
-	 * @type {{ goToNext: () => void; }}
-	 */
-	let carousel; // for calling methods of the carousel instance
-	
+
+	import homeban1 from "$lib/Images/annapol_img/homebanner_1.webp";
+	import homeban2 from "$lib/Images/annapol_img/homebanner_2.webp";
+
+	const photos = [homeban1, homeban2]
+
+	import '@splidejs/svelte-splide/css';
+	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
+
+	let carousel: { goToNext: () => void; }; // for calling methods of the carousel instance
+
 	const handleNextClick = () => {
-	  carousel.goToNext()
+		carousel.goToNext()
 	}
+</script>
+  
+<div class="">
 
+	<Splide aria-label="My Favorite Images" options={{
+		autoplay: true
+	}}>
+
+		
+		{#each photos as selection }
+		<SplideSlide>
+			<img src={selection} alt="loading"/>
+		</SplideSlide>
+		{/each}
+		
+
+	</Splide>
 	
-  </script>
-  
-  {#if browser}
-	<Carousel bind:this={carousel}
-	autoplay
-	autoplayDuration={2000}
-	>
-		<div>
-			<img src={homeBan1} alt="loading" class="" />
-		</div>
-		<div>
-			<img src={homeBan1} alt="loading" class="" />
-		</div>
-		<div>
-			<img src={homeBan1} alt="loading" class="" />
-		</div>
-	</Carousel>
-  {/if}
-  
-  <button on:click={handleNextClick}>Next</button>
+
+</div>
