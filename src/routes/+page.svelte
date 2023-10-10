@@ -2,6 +2,10 @@
 	// @ts-ignore
 	import Carousel from 'svelte-carousel';
 	import { browser } from '$app/environment';
+
+	import homeBan1 from "$lib/Optimize/homebanner_1.webp";
+	import homeBan2 from "$lib/Optimize/homebanner_2.webp";
+	import homeBan3 from "$lib/Optimize/homebanner_3.webp";
   
 	/**
 	 * @type {{ goToNext: () => void; }}
@@ -11,15 +15,24 @@
 	const handleNextClick = () => {
 	  carousel.goToNext()
 	}
+
+	
   </script>
   
   {#if browser}
-	<Carousel
-	  bind:this={carousel}
+	<Carousel bind:this={carousel}
+	autoplay
+	autoplayDuration={2000}
 	>
-	  <div>1</div>
-	  <div>2</div>
-	  <div>3</div>
+		<div>
+			<img src={homeBan1} alt="loading" class="" />
+		</div>
+		<div>
+			<img src={homeBan1} alt="loading" class="" />
+		</div>
+		<div>
+			<img src={homeBan1} alt="loading" class="" />
+		</div>
 	</Carousel>
   {/if}
   
